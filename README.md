@@ -1,2 +1,2 @@
-# event_management
+# event-management
 Practical Test (Event Management)
