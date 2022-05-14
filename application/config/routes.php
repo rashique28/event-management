@@ -49,6 +49,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | Examples:	my-controller/index	-> my_controller/index
 |		my-controller/my-method	-> my_controller/my_method
 */
-$route['default_controller'] = 'welcome';
+$route['default_controller'] = 'Event';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
+
+$route['add-event'] = 'Event/add_event';
+$route['edit-event/(:num)'] = 'Event/edit_event/$1';
+$route['delete-event/(:num)'] = 'Event/delete_event/$1';
+$route['view-event/(:num)'] = 'Event/view_event/$1';
+
