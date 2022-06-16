@@ -36,28 +36,32 @@
 				}
 				$newArray = array_combine($months,$weekDays);
 			} else {
-				$repeatMonth = 'Month';
+				$occur = $record['repeat_occur'];
+				$day = $record['repeat_week'];
+
 				if ($record['repeat_month']=='Month') {
-					$every = '0';
+					$every = '1';
 				} else if ($record['repeat_month']=='3 Months'){
-					$every = '2';
-				} else if ($record['repeat_month']=='4 Months'){
 					$every = '3';
+				} else if ($record['repeat_month']=='4 Months'){
+					$every = '4';
 				} else if ($record['repeat_month']=='6 Months'){
-					$every = '5';
+					$every = '6';
 				} else if ($record['repeat_month']=='Year'){
-					$every = '11';
+					$every = '12';
 				}
 
-				$start = strtotime($startDate);
+				$startDate = strtotime($startDate);
+				$start = strtotime("-$every Month",$startDate);
 				$end = strtotime($endDate);
 
 				$month = $start;
-				$months[] = date('Y-m-d',$month);
-				$weekDays[] = date('l', $month);
-				$years[] = date('Y', $month);
+				// $months[] = date('Y-m-d',$month);
+				// $weekDays[] = date('l', $month);
+				// $years[] = date('Y', $month);
 				while ($month < $end) {
 					$month = strtotime("+$every Month",$month);
+					$month = strtotime($occur.' '.$day.' of '.date('F Y',$month));
 					if ($month <= $end) {
 						$months[] = date('Y-m-d', $month);
 						$weekDays[] = date('l', $month);
